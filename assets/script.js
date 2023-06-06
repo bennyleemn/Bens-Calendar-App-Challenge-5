@@ -1,6 +1,4 @@
-// One fuction to create an individual card for each hour for current day/hour
-
-
+// Wrapped in jquery, on load
 $(document).ready(function () {
   // Display the current date in the header of the page
   var currentDate = dayjs().format("dddd, MMMM D, YYYY");
@@ -19,11 +17,11 @@ $(document).ready(function () {
   // Apply the past, present, future class to each time block
   function timeOfDate() {
 
-    var currentHour = dayjs().format("H");
-    // wrap in a function and call it on row 44
+    var currentHour = parseInt(dayjs().format("H"));
+  
     $(".time-block").each(function () {
       var timeBlockHour = parseInt($(this).attr("id").split("-")[1]);
-  
+
       if (timeBlockHour < currentHour) {
         $(this).addClass("past");
       } else if (timeBlockHour === currentHour) {
@@ -33,7 +31,6 @@ $(document).ready(function () {
         $(this).removeClass("past");
         $(this).removeClass("present");
         $(this).addClass("future");
-  
       }
     });
   }
